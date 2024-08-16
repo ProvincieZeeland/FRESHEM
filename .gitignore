@@ -1,0 +1,7 @@
+/.idea
+/.parcel-cache
+/_*
+/node_modules
+/py/__pycache__/
+package-lock.json
+*.iml

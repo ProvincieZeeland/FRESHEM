@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+ <title>Mapperr | Pagina niet gevonden</title>
+<meta name='subtitle' content=''>
+<meta name='keywords' content=''>
+<meta name='description' content=''>
+<meta name='robots' content='index, follow'>
+<meta name='generator' content='Wombat framework v2.0.1'>
+<meta name='author' content='Wim Kosten / Provincie Zeeland'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='msapplication-TileColor' content='#ffffff'>
+<meta name='theme-color' content='#ffffff'>
+<meta name='x-memory' content='6291456 bytes'>
+<meta name='x-time' content='1712402049.5517s'>
+
+ 
+ <!-- External JS files-->
+ <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+ 
+ <!-- Internal JS files-->
+  
+
+<!-- External CSS files-->
+  
+ <!-- Internal CSS files-->
+ <link href='/loader/css/mapperr_v2:bootstrap.min.css/mapperr_v2:frontend.css' rel='stylesheet' type='text/css'/>
+  
+ 
+ <!-- Font-awesome 4.7 -->
+ <link href='/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+ 
+</head>
+
+<body>
+<!-- header -->
+<style>
+html, body
+{
+    margin-top:0px !important;
+}
+
+
+.layout-header 
+{
+    background: #fff;
+    border-bottom: 1px solid #ced5dd;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.layout-container__item 
+{
+    width: 100%;
+}    
+
+.layout-header__inner 
+{
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: 0 0px;
+}
+
+.center-div 
+{
+    margin: 0 auto;
+    max-width: 1248px;
+    border:0px solid red;
+}
+
+.logo
+{
+    border:0px solid blue;
+    height: 75px;
+    margin: 0px 0px 0px -15px !important;
+}
+
+</style>
+
+<header>
+    <div class="layout-container__item layout-header">
+        <div class="layout-header__inner center-div">
+            <div class="layout-header-logo">
+                <img alt="Logo Provincie Zeeland" class="logo" src="/assets/images/logo-zeeland-kleur.svg">
+            </div>
+        </div>
+    </div>
+</header>
+<!-- /header -->
+
+<!-- content -->
+<style>
+
+
+h1 {
+    font-size: 30px;
+    font-family: 'PFDinStencil',sans-serif;
+    font-weight: 400;
+    line-height: 52.8px;
+}
+
+.center-div-content 
+{
+    margin: 0 auto;
+    max-width: 1220px;
+    padding-top:0px;
+}
+
+ .content
+ {
+   color: #3d4853;
+    font-size: 18px;
+    font-family: "DINWebPro",sans-serif;
+    font-weight: 400;
+    line-height: 27px;
+    padding-bottom:10px;
+} 
+
+</style>
+
+
+<div class="center-div-content">
+  <h1>Pagina niet gevonden</h1>
+  <p class="content">
+  
+  Sorry, we kunnen deze pagina helaas niet (meer) vinden. Het lijkt erop dat de pagina die u probeert te raadplegen niet (meer) bestaat. Onze excuses voor het ongemak.   <a href='/'>Overzicht met beschikbare kaarten</a>
+  </p>
+</div>  <!-- /content -->
+
+<!-- footer -->
+<footer>
+<!-- De default footer -->
+</footer><!-- /footer -->
+
+<!-- siteimprove -->
+<script async src="https://siteimproveanalytics.com/js/siteanalyze_6011276.js"></script>
+
+</body>
+  

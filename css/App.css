@@ -1,0 +1,930 @@
+/**----------------------------------------------------------------------------------------------------
+ * The main css.
+ *
+ * European Union Public Licence V. 1.2
+ * EUPL © the European Union 2007, 2016
+ *
+ * Modified: 2024, Eddy Scheper, OpenGeoGroep/ARIS BV
+ */
+html, body {
+    background-color: #FFF;
+    font-family: "dinwebpro", "arial", "verdana", "sans-serif";
+    font-size: 15px;
+    color: #3d4853;
+}
+
+body {
+    margin: 0;
+    line-height: 1.42857143;
+    overflow: hidden;
+}
+
+header {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'pfdinstencil';
+    /*src: url("../fonts/PFDinStencil-Bold.eot");*/
+    src: local("Ôÿ?"),
+    url("../fonts/PFDinStencil-Bold.woff") format("woff"),
+    url("../fonts/PFDinStencil-Bold.woff2") format("woff2");
+    /*url("../PFDinStencil-Bold.ttf") format("truetype");*/
+    font-weight: bold;
+}
+
+/*@media (min-width: 992px) {*/
+/*    .col-md-6 {*/
+/*        width: 50%;*/
+/*        float: left;*/
+/*        position: relative;*/
+/*        min-height: 1px;*/
+/*        padding-right: 15px;*/
+/*        padding-left: 15px;*/
+/*    }*/
+/*}*/
+
+/*!* #### Mobile Phones Portrait #### *!*/
+/*@media screen and (max-device-width: 480px) and (orientation: portrait) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*!* #### Mobile Phones Landscape #### *!*/
+/*@media screen and (max-device-width: 640px) and (orientation: landscape) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*!* #### Mobile Phones Portrait or Landscape #### *!*/
+/*@media screen and (max-device-width: 640px) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*!* #### iPhone 4+ Portrait or Landscape #### *!*/
+/*@media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*!* #### iPhone 5 Portrait or Landscape #### *!*/
+/*@media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*!* #### iPhone 6 and 6 plus Portrait or Landscape #### *!*/
+/*@media (min-device-height: 667px) and (min-device-width: 375px) and (-webkit-min-device-pixel-ratio: 3) {*/
+/*    .line_profile {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {*/
+/*    .line_profile {*/
+/*        display: block;*/
+/*    }*/
+/*}*/
+
+/*!* #### Desktops #### *!*/
+/*@media screen and (min-width: 1024px) {*/
+/*    .line_profile {*/
+/*        display: block;*/
+/*    }*/
+/*}*/
+/*!* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) *!*/
+/*@media screen and (max-height: 450px) {*/
+/*    .sidenav {*/
+/*        padding-top: 15px;*/
+/*    }*/
+
+/*    .sidenav a {*/
+/*        font-size: 12px;*/
+/*    }*/
+/*}*/
+
+
+/*@media screen and (max-width: 745px) {*/
+/*    .map-title {*/
+/*        display: none;*/
+/*    }*/
+/*    .map-subtitle {*/
+/*        display: none;*/
+/*    }*/
+/*    .ol-control.ol-layerswitcher {*/
+/*        top: 5.1em;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-width: 746px) {*/
+/*    .map-title {*/
+/*        display: inline;*/
+/*    }*/
+/*    .map-subtitle {*/
+/*        display: inline;*/
+/*    }*/
+/*    .ol-control.ol-layerswitcher {*/
+/*        top: 5.1em;*/
+/*    }*/
+/*}*/
+
+/* Identify popup. */
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 350px;
+    min-height: 280px;
+}
+
+.ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    /* pointer-events: none; */
+}
+
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+
+/* Reset de hoogte voor de geocoder popup. */
+.ol-popup-low {
+    min-height: initial !important;
+}
+
+.ol-layerswitcher .layerup {
+    display: none;
+}
+
+.ol-layerswitcher .layerTrash {
+    display: none;
+}
+
+.ol-layerswitcher .expend-layers:after {
+    background: #369;
+}
+
+.ol-control {
+    background-color: unset !important;
+}
+
+.ol-layerswitcher.ol-forceopen .panel {
+    display: inline-block !important;
+}
+
+/*LayerSwitcher - Info panel*/
+.ol-layerswitcher-info {
+    width: 400px;
+    display: none;
+    float: left;
+    top: 0;
+    position: relative;
+    background-color: #FFF;
+    padding: 5px;
+    border-radius: 0 0 2px 2px;
+}
+
+.ol-layerswitcher-info-content {
+    font-size: 13px;
+    overflow-y: auto;
+    border: 0 solid black;
+    height: 93%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.ol-layerswitcher-info-content-close {
+    text-align: right;
+    border-bottom: 1px solid #DDD;
+}
+
+.ol-layerswitcher .expend-layers:before, .ol-layerswitcher.collapse-layers:before {
+    background: #369;
+}
+
+.ol-layerswitcher .layerswitcher-opacity-label, .ol-layerswitcher .layerswitcher-dimension-label {
+    display: block;
+    font-weight: bold;
+    position: initial !important;
+    font-size: 0.82em !important;
+}
+
+.ol-control.ol-layerswitcher label {
+    font-weight: 500;
+}
+
+.ol-control.ol-layerswitcher .layerswitcher-dimension-cursor {
+    font-weight: 700;
+}
+
+.ol-layerswitcher .layerswitcher-opacity {
+    border: 0 solid red;
+    display: inline-block;
+}
+
+.ol-layerswitcher .layerswitcher-opacity-label {
+    display: block;
+    width: 50px;
+    float: right;
+    font-size: 0.85em !important;
+    border: 0 solid red;
+    text-align: center;
+    background-color: #369;
+    color: #FFF;
+    padding: 2px;
+    border-radius: 50px;
+}
+
+/*Buttons*/
+.ol-control button {
+    color: white;
+    background-color: rgba(0, 60, 136, .5);
+    font-size: 1.14em;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    height: 1.375em;
+    width: 1.375em;
+    line-height: .4em;
+}
+
+.ol-control.ol-bar .ol-toggle.ol-active > button {
+    background: rgba(60, 136, 0, 0.7);
+}
+
+.ol-control button:focus, .ol-control button:hover {
+    color: white;
+    text-decoration: none;
+    background-color: rgba(0, 60, 136, .7);
+}
+
+.ol-control.ol-bar .ol-toggle.ol-active button:hover {
+    color: white;
+    background: rgba(60, 136, 0, 0.7);
+}
+
+.ol-scale-line {
+    background: rgba(0, 60, 136, .6);
+    color: #EEE;
+}
+
+.ol-scale-line-inner {
+    color: #EEE;
+    border-left-color: #EEE;
+    border-right-color: #EEE;
+    border-bottom-color: #EEE;
+}
+
+/* Hide original layers image. */
+.ol-layerswitcher-image > button:before,
+.ol-layerswitcher-image > button:after,
+.ol-layerswitcher > button:before,
+.ol-layerswitcher > button:after {
+    height: 0;
+}
+
+/* Set block color. */
+.ol-layerswitcher .panel li {
+    background-color: #EEE;
+}
+
+/* Set panel top margin, ie. header. */
+.ol-layer-group {
+    margin-bottom: 15px;
+    padding: 0.5em;
+}
+
+/* Set panel top margin, ie. header. */
+.ol-layerswitcher .panel .ol-header {
+    border: none;
+}
+
+/* Hide layer tranparancy sliders, but show grouplayer sliders. */
+.ol-layer-group ul .layerswitcher-opacity {
+    display: none;
+}
+
+/* Hide layer tranparancy sliders & labels, but show grouplayer sliders. */
+.ol-layer-group ul .layerswitcher-opacity-label {
+    display: none;
+}
+
+/*-------------------------------------------------------------------------*/
+/* LayerSwitcher - Header Bar
+/*-------------------------------------------------------------------------*/
+.ol-control.ol-layerswitcher .ol-switchertopdiv,
+.ol-control.ol-layerswitcher .ol-switcherbottomdiv {
+    border-color: white;
+    margin: 0 0;
+    top: 0 !important;
+}
+
+.ol-layerswitcher.ol-forceopen.ol-collapsed .ol-switchertopdiv,
+.ol-layerswitcher.ol-forceopen.ol-collapsed .ol-switcherbottomdiv {
+    height: 2em;
+}
+
+.ol-layerswitcher-info-content-title {
+    font-size: 14px;
+    color: #369;
+    display: block;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
+.ol-layerswitcher-info-content ul {
+    margin: 0;
+}
+
+/*LayerSwitcher - I-buttons*/
+/* De i-knopper onderelkaar uitlijnen. */
+.ol-layerswitcher .panel ul {
+    padding: 10px 0 0 6px;
+}
+
+/*LayerSwitcher - Layers title*/
+.ol-layerswitcher .panel li label {
+    display: block !important;
+    font-size: 13px;
+    max-width: 100%;
+    margin-bottom: 2px;
+}
+
+/*LayerSwitcher - Group opacity slider*/
+.ol-layerswitcher .layerswitcher-opacity {
+    width: 190px;
+}
+
+.ol-layerswitcher .layerswitcher-dimension {
+    display: inline-block;
+    position: relative;
+    border: 0 solid #369;
+    height: 3px !important;
+    width: 190px;
+    margin: 5px 1em 10px 7px;
+    /* FF css error. */
+    /*-webkit-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+    border-radius: 3px;
+    background: #69c;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 60, 136, 0)), to(rgba(0, 60, 136, 0.6)));
+    background: linear-gradient(to right, rgba(0, 60, 136, 0), rgba(0, 60, 136, 0.6));
+    cursor: pointer;
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* TICKS */
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-tickpanel,
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-tickpanel:before {
+    display: block;
+    position: absolute;
+    margin-top: 10px;
+    width: 190px;
+    height: 7px;
+}
+
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-tick {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(0, 60, 136, 1.0)
+}
+
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-cursor,
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-cursor:before {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    background: rgba(0, 60, 136, 0.5);
+    border-radius: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-cursor:before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+
+.ol-touch .ol-layerswitcher .layerswitcher-dimension .layerswitcher-dimension-cursor {
+    width: 26px;
+    height: 26px;
+}
+
+/*LayerSwitcher - Labels*/
+/* De labels onderelkaar uitlijnen. */
+.ol-layerswitcher .layerswitcher-dimension-label {
+    display: block;
+    width: 50px;
+    float: right;
+    text-align: center;
+    color: #FFF;
+    padding: 2px;
+    border-radius: 50px;
+    position: absolute;
+    font-size: 0.8em;
+    right: -2.5em;
+    bottom: 5px;
+    margin-right: 1em;
+    background-color: #369;
+}
+
+.ol-layerswitcher .layerswitcher-dimension-label::after {
+    content: "";
+}
+
+.ol-control.ol-layerswitcher {
+    top: 0.45em !important;
+
+}
+
+.ol3_search_form {
+    margin-top: 15px !important;
+    float: right !important;
+}
+
+.showPercent .layerSwitcher .ol-layerswitcher .layerswitcher-opacity-label {
+    display: block;
+}
+
+.showPercent .layerswitcher-opacity-label {
+    display: block;
+}
+
+#map {
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 35;
+}
+
+#map .ol-zoom {
+    font-size: 1.2em;
+}
+
+.map-title {
+    font-size: 20px;
+    font-family: 'PFDinStencil', sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.map-version {
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    font-weight: 200;
+    margin-left: 0.2em;
+    align-self: flex-end;
+    margin-bottom: 2px;
+}
+
+/*Geocoder*/
+#map_search_simple_result {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    position: absolute;
+    background-color: #FFFFFF;
+    overflow-y: auto;
+    display: none;
+}
+
+#gp_container {
+    top: 7.0em;
+    left: 10%;
+    background-color: white;
+    width: 700px;
+    height: 530px;
+    min-width: 800px;
+    min-height: 530px;
+    z-index: 9999;
+    display: none;
+    padding-left: 10px;
+    padding-top: 5px;
+    border-radius: 15px;
+}
+
+/*Main Info Popup*/
+#fl_container {
+    top: 40px;
+    left: 10%;
+    color: #000;
+    background-color: white;
+    width: 700px;
+    height: 530px;
+    min-width: 800px;
+    min-height: 530px;
+    z-index: 9999;
+    display: none;
+    padding-top: 24px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+}
+
+.fl-container-content {
+    height: 450px; /* vanwege download png */
+    overflow-y: auto;
+}
+
+.fl-container-content p {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.fl-container-image {
+    max-width: 775px;
+    width: 100%;
+}
+
+.freshem-info-button {
+    top: 2.15em;
+    right: 0.5em;
+}
+
+.layout-header {
+    background: #fff;
+    border-bottom: 1px solid #ced5dd;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.layout-container__item {
+    width: 100%;
+}
+
+.layout-header__inner {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: 0 0;
+}
+
+li.layer label {
+    width: 100%;
+}
+
+.li-content label {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.li-content {
+    border: 0 solid green;
+    padding-bottom: 5px;
+    width: 280px;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+/* Adres zoek veld - bootstap. */
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn-group:not(:last-child) > .btn, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .form-control, .input-group-addon, .input-group-btn {
+    display: table-cell;
+}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+/* FeatureInfo Tabs */
+.featureInfoTabs {
+    border: none !important;
+}
+
+/* FeatureInfo Tabs */
+.featureInfoTabs li {
+    font-size: 10px;
+}
+
+/* FeatureInfo Tabs Panel */
+.featureInfoTabPanel {
+    font-size: 13px;
+    padding: 8px !important;
+}
+
+/* FeatureInfo Tab Content. */
+.featureInfoTabPanel ul {
+    padding: 8px !important;
+    padding-bottom: 0 !important;
+}
+
+/* FeatureInfo Tab Content. */
+.freshem-gfi-response ul {
+    font-size: 13px;
+    padding: 0 !important;
+    padding-left: 8px !important;
+    margin: 0 !important;
+}
+
+/* FeatureInfo Tab Content */
+.featureInfoTabPanel li {
+    font-size: 13px;
+}
+
+/* FeatureInfo Tab Content Columns*/
+.freshem-gfi-response .column1 {
+    display: inline-block;
+    width: 120px;
+}
+
+.freshem-gfi-response .column2 {
+    display: inline-block;
+}
+
+#progress {
+    position: absolute;
+    z-index: 9999999;
+    border: 0 solid red;
+    left: 0;
+    height: 2px;
+    background: rgba(0, 60, 136, .6);
+    width: 0;
+    transition: width 250ms;
+    top: 50px;
+}
+
+.center-div {
+    margin: 0 auto;
+    border: 0 solid red;
+}
+
+.logo {
+    border: 0 solid blue;
+    height: 65px;
+    margin: 0 !important;
+    float: left;
+
+}
+
+.info_img {
+    vertical-align: top;
+    padding-right: 10px;
+    float: left;
+}
+
+/* FeatureInfo Tabs active */
+.ui-state-active {
+    background-color: #369 !important;
+    border-color: #369 !important;
+}
+
+.custom-mouse-position {
+    float: left;
+    font-size: 11px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#chartpopup {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 55px;
+    background-color: white;
+    width: 700px;
+    min-width: 800px;
+    height: 530px;
+    min-height: 530px;
+    padding: 10px;
+    z-index: 9999;
+    border-radius: 15px;
+    box-shadow: 2px 3px 5px #999;
+}
+
+.chartclosebtn {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    color: #369;
+}
+
+#chartsidebar {
+    float: left;
+    border-right: 1px solid black;
+    width: 20%;
+    min-width: 50px;
+    margin-top: 20px;
+    height: 485px;
+    padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.chartcheck {
+    width: 100%;
+}
+
+#chartsidebar input {
+    margin: 4px 0 0 0;
+    line-height: normal;
+    box-sizing: border-box;
+}
+
+#chartsidebar label {
+    display: block;
+    position: relative;
+    padding-left: 2ch;
+    color: #369;
+    font-family: "arial", "verdana", "sans-serif";
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+#chartsidebar label > [type=checkbox], #chartsidebar label > [type=radio] {
+    position: absolute;
+    left: 0;
+}
+
+.chartsuit {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.chartprintbtn {
+    width: 140px;
+    background-color: #369;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 100 !important;
+    font-family: "arial", "verdana", "sans-serif";
+    color: #FFF;
+    border: 0;
+}
+
+#chartpanel {
+    height: 100%;
+    margin-left: 80px;
+    padding: 10px;
+    overflow: auto;
+}
+
+#charttopbar {
+    float: left;
+    width: 100%;
+    height: 5%;
+}
+
+/* BUTTONS */
+#charttopbar span {
+    float: left;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+
+#chartcoordinates {
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    height: 16px;
+    font-size: 16px;
+    color: white;
+    background-color: gray;
+}
+
+.charticon svg {
+    /*https://isotropic.co/tool/hex-color-to-css-filter/*/
+    pointer-events: none;
+    filter: invert(66%) sepia(10%) saturate(2270%) hue-rotate(173deg) brightness(84%) contrast(88%);
+}
+
+.charticon svg:hover {
+    filter: invert(37%) sepia(10%) saturate(2994%) hue-rotate(169deg) brightness(96%) contrast(91%);
+}
+
+#chartcontainer {
+    width: 100%;
+    height: 95%;
+}
+
+.chartprofile {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.chartprofile .ol-zoom-in,
+.chartprofile .ol-zoom-out {
+    display: none;
+}
+
+/* Voor hover maptip. */
+.chartinfo {
+    position: absolute;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    z-index: 100;
+    font-family: sans-serif;
+    font-size: 12px;
+    background-color: #369;
+    color: #fff;
+    text-align: left;
+    border-radius: 4px;
+    padding: 5px;
+    left: 50%;
+    transform: translateX(3%);
+    visibility: hidden;
+    pointer-events: none;
+}

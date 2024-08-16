@@ -1,0 +1,50 @@
+{
+  "name": "freshem_app",
+  "scripts": {
+    "======OVERIG======": "",
+    "minify_index": "node ./minify_html.js index.html ./dist/index.html",
+    "list_packages": "npm ls --depth=0",
+    "packs": "npm-run-all list_packages",
+    "======CLEANUP======": "",
+    "cache_cleanup": "@powershell del ./.parcel-cache/*.*",
+    "xxdist_cleanup": "@powershell del ./dist/index.* && @powershell del ./dist/fa-*",
+    "dist_cleanup_pre": "@powershell del ./dist/*.*",
+    "dist_cleanup_post": "@powershell del ./dist/*.png && @powershell del ./dist/purify.* && @powershell del ./dist/html2canvas.*",
+    "dist_nomap": "@powershell del ./dist/*.map",
+    "run_cleanup": "@powershell del ./run/fa-* && @powershell del ./run/index.*",
+    "======DEV======": "",
+    "dev": "npm run run_cleanup && parcel index.html --dist-dir ./run",
+    "======BUILD======": "",
+    "config:copy": "@powershell copy config.js ./dist/config.js",
+    "images:mkdir": "@powershell New-Item -ItemType Directory -Force -Path ./dist/images >nul",
+    "images:copy": "@powershell copy images/*.* ./dist/images",
+    "index:copy_html": "@powershell copy index.html ./dist/index.html",
+    "index_report:build_js": "parcel build index.js --dist-dir ./dist --public-url ./ --detailed-report",
+    "index:build_js": "parcel build index.js --dist-dir ./dist --public-url ./",
+    "index_nomin:build_js": "parcel build --no-content-hash index.js --dist-dir ./dist --public-url ./ --no-optimize",
+    "info:mkdir": "@powershell New-Item -ItemType Directory -Force -Path ./dist/info >nul",
+    "info:mkdir_images": "@powershell New-Item -ItemType Directory -Force -Path ./dist/info/images >nul",
+    "info:copy_html": "@powershell copy info/*.* ./dist/info",
+    "info:copy_images": "@powershell copy info/images/*.* ./dist/info/images",
+    "build_nomap": "npm-run-all build dist_nomap dist_cleanup_post",
+    "build_nomin": "npm-run-all dist_cleanup_pre config:* images:* info:* index:copy_html index_nomin:* dist_cleanup_post",
+    "build": "npm-run-all dist_cleanup_pre config:* images:* info:* index:* dist_cleanup_post",
+    "dummy": "ivm. laatste komma"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "6.5.1",
+    "jquery": "3.7.1",
+    "jquery-ui": "1.13.2",
+    "jspdf": "2.5.1",
+    "magnify": "2.3.3",
+    "ol": "9.1.0",
+    "ol-ext": "^4.0.17"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "htmlnano": "^2.1.0",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  }
+}

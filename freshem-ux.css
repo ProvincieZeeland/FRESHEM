@@ -1,0 +1,446 @@
+#ui-id-1    					{z-index:999999999; width:300px !important; font-size:13px;}
+.ui-autocomplete-loading 			{background: white url("https://jqueryui.com/resources/demos/autocomplete/images/ui-anim_basic_16x16.gif") right center no-repeat;}
+.layerSwitcher                            	{border:1px solid red !important; position:absolute; width:300px; z-index:999; left:10px; top:60px; display:none;}
+.li-content                                	{border:0px solid green; padding-bottom:0px;} 
+.li-content label                        	{font-weight:normal; font-size:14px;}
+
+.ol-layerswitcher .layerswitcher-opacity-label  {display:block;}
+.ol-layerswitcher .panel li label            	{max-width: unset; font-size:13px;}
+.ol-layerswitcher .layerup                    	{display:none;}
+.ol-layerswitcher .layerTrash                	{display:none;}
+.ol-layer-group                    		{margin-bottom:15px;}
+.ol-layerswitcher .expend-layers:after   	{background: #369;}
+.ol-layerswitcher .layerswitcher-dimension    	{height:3px !important;}
+.ol-control                    			{background-color: unset !important;}
+.ol-layerswitcher.ol-forceopen .panel         	{display: inline-block !important;}
+.ol-layerswitcher-info                		{width: 400px; display: none; float: left; top: 25px; position:relative; background-color: #FFF; padding: 5px; border-radius: 0 0 2px 2px;}
+.ol-layerswitcher-info-content            	{font-size: 13px; overflow-y: auto; border: 0px solid black; height: 93%; padding-top:10px; padding-right: 10px; padding-left: 10px;} 
+.ol-layerswitcher-info-content-title        	{font-size: 14px; color:#369; display: block; padding-bottom:15px; font-weight:bold;}
+.ol-layerswitcher-info-content-close        	{text-align:right; border-bottom: 1px solid #DDD;}
+.ol-layerswitcher .expend-layers:before, .ol-layerswitcher.collapse-layers:before {background: #369;}
+.ol-layerswitcher .layerswitcher-opacity-label, .ol-layerswitcher .layerswitcher-dimension-label {display:block; font-weight:bold; position: initial !important; font-size:0.82em !important;}
+
+.freshem_form        				{margin-top:6px;}
+.freshem-info-button				{top: 2.15em; right: 0.5em;}
+
+.tt-query, .tt-hint 				{width: 396px; height: 30px; padding: 8px 12px; font-size: 24px; line-height: 30px; border: 2px solid #ccc; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; outline: none; }
+.tt-query 					{-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);}
+.tt-hint 					{color: #999;}
+.tt-dropdown-menu 				{width: 422px; margin-top: 12px; padding: 8px 0; background-color: #fff; border: 1px solid #ccc;  border: 1px solid rgba(0, 0, 0, 0.2); -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2); -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2); box-shadow: 0 5px 10px rgba(0,0,0,.2);}
+.tt-suggestion 					{padding: 3px 20px; font-size: 18px; line-height: 24px;}
+.tt-suggestion.tt-is-under-cursor 		{color: #fff; background-color: #0097cf;}
+
+html, body
+{
+        background-color: #FFF;
+        font-family: "dinwebpro","arial","verdana","sans-serif";
+        color: #3d4853;
+}
+
+.pz-controls                {top:8px; right:10px; border:2px solid #eee; position:absolute; background-color: rgba(255,255,255,.4); border-radius: 4px;}
+.pz-controls-down           {top: 40px; right:7px;}
+.pz-control                 {border-radius: 2px 2px 2px 2px; display: block; margin: 1px; padding: 0; color: #fff; font-size: 1.14em; font-weight: 700; text-decoration: none; text-align: center; height: 1.375em; width: 1.375em; line-height: .4em; background-color: rgba(0,60,136,.5); border: none;}
+.fa-lg-pz                   {font-size: 0.85em; line-height: .85em; vertical-align: -15%;}
+.pz-legend-image-container  {width:100%; border:1px solid #DDD; margin-top:5px; margin-bottom:10px; background-color:#FFF;}
+.pz-legend-image            {}
+.ol-mouse-position          {will-change: contents,width; text-align:center; height:25px; border: 1px solid #eee; color:#EEE; top:unset; bottom:8px; right:10px; background: rgba(0,60,136,.6); border-radius: 4px; font-family:verdana; padding:3px; font-size:10px; color:#FFF;}
+.ol-scale-line              {background: rgba(0,60,136,.6); color:#EEE;}
+
+.feature-info-kop           {font-family:"dinwebpro","arial","verdana","sans-serif"; font-size:12px; font-weight:bold; color:#C2004B;}
+.feature-info-text          {font-family:"dinwebpro","arial","verdana","sans-serif"; font-size:12px; color:black;}
+.feature-info-link        {font-family:"dinwebpro","arial","verdana","sans-serif"; font-size:12px; color:black; text-decoration:underline;}    
+
+#progress                   {position:absolute; z-index:9999999; border:0px solid red; left: 0; height: 2px; background: rgba(0,60,136,.6); width: 0; transition: width 250ms; top:50px;}
+
+/* The side navigation menu */
+.sidenav 
+{
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 99999999999999999; /* Stay on top */
+    top: 50px;
+    left: -50px;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: scroll;
+    padding-top: 60px; /* Place content 60px from the top */
+    color:#000;
+    padding-top:10px;
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
+
+/* The navigation menu links */
+.sidenav a 
+{
+    padding-left:10px;
+    font-family: verdana;
+    font-size: 12px;
+    color: #000;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #000;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 12px;}
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{
+    font-size:14px;
+}
+
+.navbar-zeeland
+{
+    background-color: #C2004B;
+        background-image: url(https://kaarten.zeeland.nl/assets/images/lijnenspel_m_carrousel_rood_a.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    border-bottom:1px solid #666;
+}
+
+.navbar-title
+{
+    color: #FFF;
+    font-family: "pfdinstencil","arial","verdana","sans-serif";
+    font-size:25px;
+    margin-top:10px; 
+    display:block;
+}
+
+.navbar-logo
+{
+    background-color:#FFF; 
+    border:1px solid black; 
+    width:80px; 
+    margin-top:6px;
+}
+
+.hideOpacity .layerswitcher-opacity 
+{    display:none;
+}
+.hideOpacity .ol-layerswitcher .layerup
+{    height: 1.5em;
+}
+.showPercent .layerSwitcher .ol-layerswitcher .layerswitcher-opacity-label {
+    display: block;
+}
+
+.showPercent .layerswitcher-opacity-label {
+    display: block;
+}
+
+.ol-header > div 
+{    width:100%; 
+}
+.toggleVisibility
+{    padding-left: 1.6em;
+    cursor: pointer;
+    border-bottom: 2px solid #369;
+    margin-bottom: 0.5em; 
+}
+.toggleVisibility:before
+{    background-color: #fff;
+    border: 2px solid #369;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: 1.2em;
+    left: 0.1em;
+    margin: 0;
+    position: absolute;
+    width: 1.2em;
+}
+.toggleVisibility.show:before
+{    background: #369;
+}
+
+.ol-control.ol-layerswitcher .ol-switchertopdiv, .ol-control.ol-layerswitcher .ol-switcherbottomdiv {
+    top: 6em;
+}
+.ol-control.ol-layerswitcher {
+    top: 0.45em !important;
+    
+}
+
+.ol-control.ol-layerswitcher label {
+    font-weight: 500;
+}
+
+.ol-control.ol-layerswitcher .layerswitcher-dimension-cursor {
+    color: red;
+    font-weight: 700;
+}
+
+.ol-layerswitcher .layerswitcher-opacity
+{
+    border:0px solid red;
+    display: inline-block;
+}
+
+.ol-layerswitcher .layerswitcher-dimension
+{
+    position: fixed;
+        display: inline-block;
+}
+
+.ol-layerswitcher .layerswitcher-opacity-label
+{
+    display: block;
+    width: 50px;
+    float:right;
+    font-size:0.85em !important;
+    border:0px solid red;
+    text-align: center;
+    background-color: #999;
+        color: #FFF;
+        padding: 2px;
+    border-radius: 50px;
+}
+
+.ol-layerswitcher .layerswitcher-dimension-label
+{
+    display: block;
+    width: 50px;
+    float:right;
+    font-size:0.85em !important;
+    text-align: center;
+    background-color: #369;
+        color: #FFF;
+        padding: 2px;
+    border-radius: 50px;    
+}
+
+.ol-layerswitcher .panel li label
+{
+    display:block !important;
+}
+
+.ol-layerswitcher .panel ul
+{
+    padding: 10px 10px 0 10px;
+}
+
+.li-content
+{
+    padding-bottom:5px;
+    width:250px;
+}
+
+ .supplot_collaps,
+ .pshow,
+ .phide:target {
+ display: none;
+ }
+ .phide:target + .pshow,
+ .phide:target ~ .supplot_collaps {
+ display: block;
+ }
+
+ #gp_container {
+ top: 7.0em;
+ left: 10%;
+ background-color: white;
+ width: 700px;
+ height: 530px;
+ min-width: 800px;
+ min-height: 530px;
+ z-index: 9999;
+ display: none;
+ padding-left: 10px;
+ padding-top: 5px;
+ border-radius: 15px;
+ }
+
+ .gp_chooser {
+ float: left;
+ width: 20%;
+ min-width: 50px;
+ margin-left: 5px;
+ margin-top: 20px;
+ height: 485px;
+ border-right: 1px solid black;
+ }
+
+ .gp_subplot_container_td {
+ width: 60%;
+ float: left;
+ }
+
+ .gp_subplot_container_lr {
+ width: 60%;
+ float: left;
+ padding-left:15px;
+ padding-right:15px;
+ }
+
+ .gp_legend {
+ float: left;
+ width: 18%;
+ min-width: 50px;
+ margin-top: 20px;
+ margin-bottom: 20px;
+ }
+
+ .gp_subplot_td {
+ /*width: 100%;*/
+ /*height: 80%;*/
+ width: 100%;
+ margin-top: 20px;
+ margin-bottom: 20px;
+ }
+
+ .gp_subplot_lr {
+ width: 30%;
+ /*height: 80%;*/
+ margin-top: 20px;
+ margin-bottom: 20px;
+ float: left;
+ }
+
+.gp_btn_label
+{
+  color:#369;
+  padding-left:10px;
+  font-weight:100 !important;
+  font-family: "pfdinstencil","arial","verdana","sans-serif";
+}
+
+#fl_container 
+{
+ top:7.0em;
+ left: 10%;
+ color:#000;
+ background-color: white;
+ width: 700px;
+ height: 530px;
+ min-width: 800px;
+ min-height: 530px;
+ z-index: 9999;
+ display: none;
+ padding-left: 10px;
+ padding-top: 5px;
+ border-radius: 15px;
+}
+
+.fl-container-content
+{
+  height:450px;
+  overflow-y:auto;
+}
+
+.fl-container-image
+{
+  max-width:775px;
+  width: 100%;
+}
+
+/* #ol3-pz-logo        		{left:-25px; margin-left:-20px; width:150px;} */
+#ol3-pz-logo        		{margin-top: 12px !important; width:150px;}
+.navbar-zeeland 		{height:50px !important;}
+.navbar-title        		{padding-top:10px !important; padding-left:10px !important; font-weight:bold;}
+.ol3_search_form        	{margin-top:15px !important; float:right !important;}
+.ol-control.ol-layerswitcher	{top: 5.1em;}
+#full-title			{display:inline;}
+
+@media screen and (max-width: 745px) 
+{
+  .ol-control.ol-layerswitcher  {top: 5.1em;}
+  /*.ol-control.ol-bar		{top: 5.1em;}
+  .ol-zoom			{top: 4.4em;} */
+  #full-title			{display:none;}
+}
+
+@media screen and (max-width: 435px) 
+{
+  .ol-control.ol-layerswitcher  {top: 5.1em;}
+  /*.ol-control.ol-bar            {top: 5.1em;}
+  .ol-zoom			{top: 4.4em;}  */
+  #full-title			{display:none;}  
+}
+
+@media screen and (min-width: 746px) 
+{
+  .ol-control.ol-layerswitcher  {top: 5.1em;}
+  /* .ol-control.ol-bar            {top: 5.1em;}  */
+  /* .ol-zoom			{top: 4.4em;}   */
+  #full-title			{display:inline;}
+}
+
+/*
+@media screen and (max-height: 600px)
+{
+  .ol-switcherbottomdiv		{top: 2.5em !important; border:1px solid red;}
+}
+*/
+
+
+/**
+ *  New MAPPERR 2.0 layout
+ */
+.layout-header 
+{
+    background: #fff;
+    border-bottom: 1px solid #ced5dd;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.layout-container__item 
+{
+    width: 100%;
+}    
+
+.layout-header__inner 
+{
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    padding: 0 0px;
+}
+
+.center-div 
+{
+    margin: 0 auto;
+    border:0px solid red;
+}
+
+.logo
+{
+    border:0px solid blue;
+    height: 65px;
+    margin:0px !important;
+    float: left;
+
+}
+
+.map-title
+{
+    font-size: 20px;
+    font-family: 'PFDinStencil',sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+ 
+

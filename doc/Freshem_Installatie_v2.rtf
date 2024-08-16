@@ -1,0 +1,387 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil Arial;}{\f2\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red128\green0\blue0;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\cf1\b\fs30 Installatie FRESHEM 2.0\b0\fs20\par
+\f1\par
+\b\f0\fs26 Downloaden van de zip bestanden\par
+\b0\fs20 csv_v2.zip\par
+geotif_v2.zip\par
+files_v2.zip\par
+dist_v2.zip\par
+docu_v2.zip\par
+\f1\par
+\b\f0\fs26 Laden van de CSV in de database in tabel "klassen_v2"\b0\fs20\par
+\par
+\b Kopieer het bestand "point_data.csv" naar bijvoorbeeld /tmp\par
+\b0\par
+\b Maak een vrt bestand voor ogr2ogr\par
+\b0\par
+\cf2\f2 cd /tmp\par
+\cf1\f0\par
+\cf2\f2 vi point_data.vrt\par
+\cf1 <OGRVRTDataSource>\par
+    <OGRVRTLayer name="point_data">\par
+        <SrcDataSource>point_data.csv</SrcDataSource>\par
+        <GeometryType>wkbPoint</GeometryType>\par
+        <LayerSRS>EPSG:28992</LayerSRS>\par
+        <GeometryField encoding="PointFromColumns" x="x" y="y"/>\par
+        <Field name="z" src="z" type="Real" />\par
+        <Field name="laag" src="chloride_laag" type="Real" />\par
+        <Field name="midden" src="chloride_midden" type="Real" />\par
+        <Field name="hoog" src="chloride_hoog" type="Real" />\par
+        <Field name="suit_extraction" src="suit_extraction" type="Real" />\par
+    </OGRVRTLayer>\par
+</OGRVRTDataSource>\par
+\f0\par
+\b Importeer de punten in tabel "klassen_v2"\par
+\b0 Dit duurt ca. 10-15 min\par
+\par
+LET OP: Pas het passwd aan.\par
+\par
+\cf2\f2 ogr2ogr -overwrite -f "PostgreSQL" PG:"host=geopg-ext.zeeland.nl port=5432 dbname=freshem user=freshem password=***" -a_srs EPSG:28992  ./point_data.vrt -nln chloride.klassen_v2 -nlt PROMOTE_TO_MULTI\par
+\cf1\f0\par
+\b Check eventueel met DBeaver\par
+\b0\par
+\b\fs26 Maken van de extra tabel "profielen_v2"\b0\fs20\par
+Deze tabel wordt gebruikt voor de WFS service.\par
+\par
+\cf2\f2 sudo psql -h geopg-ext.zeeland.nl -U freshem frehem\par
+\cf1\f0\par
+\b Maak de tabel\par
+\b0\f2 CREATE TABLE chloride.profielen_v2 AS\par
+SELECT \par
+  wkb_geometry,\par
+  json_agg(z ORDER BY z)::character varying as z, \par
+  json_agg(laag ORDER BY z)::character varying as chloride_laag,\par
+  json_agg(midden ORDER BY z)::character varying as chloride_midden,\par
+  json_agg(hoog ORDER BY z)::character varying as chloride_hoog,\par
+  json_agg(doorlatendheid ORDER BY z)::character varying as doorlatendheid\par
+FROM \par
+  chloride.klassen_v2\par
+GROUP BY \par
+  wkb_geometry;\par
+\par
+\b\f0 Maak de index\b0\par
+\f2 ALTER TABLE chloride.profielen_v2 ADD COLUMN ogc_fid serial PRIMARY KEY;\par
+\par
+CREATE INDEX profielen_v2_wkb_geometry_geom_idx ON chloride.profielen_v2 USING GIST(wkb_geometry);\par
+\f0\par
+Sluit PSQL af.\par
+\f2\\q\par
+\f0\par
+\b Check eventueel met DBeaver\par
+\b0\par
+\b\fs26 Toevoegen in GeoServer van de extra laag "profielen_v2"\b0\fs20\par
+De tabel "profielen_v2" wordt als WFS service geserveerd vanuit GeoServer.\par
+\par
+\b Login in GeoServer\par
+\b0\par
+\b Maak een nieuwe store, bijvoorbeeld "postgis".\par
+\b0 Stores\par
+\tab Add new Store\par
+\tab\tab PostGIS\par
+\tab\tab\tab Workspace\tab\tab freshem\par
+\tab\tab\tab Data Source Name\tab postgis\par
+\tab\tab\tab Description\tab\tab postgis\par
+\tab\tab\tab Enabled\tab\tab\tab AAN\par
+\tab\tab\tab Host\tab\tab\tab geopg-ext.zeeland.nl\par
+\tab\tab\tab Port\tab\tab\tab 5432\par
+\tab\tab\tab Database\tab\tab freshem\par
+\tab\tab\tab Schema\tab\tab chloride\par
+\tab\tab\tab User\tab\tab\tab freshem\par
+\tab\tab\tab Passwd\tab\tab\tab ***\par
+\tab Save\par
+\tab Publish\par
+\tab\tab Name\tab\tab profielen_v2\par
+\tab\tab Title\tab\tab profielen_v2\par
+\tab\tab Bounding Boxes\par
+\tab\tab\tab Compute from data\par
+\tab\tab\tab Compute from data\par
+\tab Save\par
+\par
+\b Check via de Layer Preview\par
+\b0\f1\par
+\b\f0\fs26 Kopieren van de extra geotifs\par
+\b0\fs20\par
+\b Kopieer de geotifs naar bijvoorbeeld /tmp\par
+\fs26\par
+\fs20 DATA_DIR\fs26\par
+\b0\fs20 <DATA_DIR> is de GeoServer data directory.\par
+Bijvoorbeeld:\par
+\cf2\f2\tab /var/lib/tomcat9/webapps/geoserver/data\par
+\cf1\f0\par
+\b Kopieer de geotifs \par
+\b0\par
+Kopieer de geotifs naar:\par
+\tab <DATA_DIR>/geoserver_data/freshem/raster_suit_extraction100m\par
+\par
+en eventueel\par
+\tab <DATA_DIR>/geoserver_data/freshem/raster_suit_extraction50m\par
+\par
+Doe:\par
+\cf2\f2 cd <DATA_DIR>\par
+\cf1\f0\par
+Maak de directory.\par
+\cf2\f2 sudo mkdir -p geoserver_data/freshem/raster_suit_extraction100m\par
+sudo chmod -R a+rwx geoserver_data/freshem/raster_suit_extraction100m\par
+\par
+\cf1\f0 Kopieer de tifs.\par
+\cf2\f2 sudo cp /tmp/* geoserver_data/freshem/raster_suit_extraction100m\par
+\cf1\f0\par
+Maak de directory (eventueel, wordt hier niet gebruikt).\par
+\cf2\f2 sudo mkdir -p geoserver_data/freshem/raster_suit_extraction50m\par
+sudo chmod -R a+rwx geoserver_data/freshem/raster_suit_extraction50m\cf1\f0\par
+\par
+Kopieer de tifs (eventueel, wordt hier niet gebruikt).\par
+\cf2\f2 sudo cp /tmp/* geoserver_data/freshem/raster_suit_extraction50m\par
+\cf1\f0\par
+\b\fs26 Toevoegen in GeoServer van de extra style "suit_extraction"\b0\fs20\par
+De style wordt gebruikt voor de nieuwe geotifs.\par
+\par
+\b Login in GeoServer\par
+\b0\par
+\b Voeg een nieuwe style toe\par
+\b0 Style\par
+\tab Add new\par
+\tab\tab suit_extraction\par
+\tab\tab\par
+\tab\tab SLD\par
+\tab\tab Generate a default style\par
+\tab\tab\tab Raster\par
+Copy/Paste:\par
+\f2 <?xml version="1.0" encoding="ISO-8859-1"?>\par
+\fs16 <StyledLayerDescriptor version="1.0.0" \par
+    xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" \par
+    xmlns="{\cf0{\field{\*\fldinst{HYPERLINK http://www.opengis.net/sld }}{\fldrslt{http://www.opengis.net/sld\ul0\cf0}}}}\f2\fs16 " \par
+    xmlns:ogc="http://www.opengis.net/ogc" \par
+    xmlns:xlink="http://www.w3.org/1999/xlink" \par
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\par
+  <NamedLayer>\par
+    <Name>Two color gradient</Name>\par
+    <UserStyle>\par
+      <Title>SLD Cook Book: Two color gradient</Title>\par
+      <FeatureTypeStyle>\par
+        <Rule>\par
+          <RasterSymbolizer>\par
+            <ColorMap type="intervals">\par
+              <ColorMapEntry quantity="0.25" label="Ongeschikt" color="#f7fbff"/>\par
+              <ColorMapEntry quantity="0.5" label="Matig geschikt" color="#afd1e7"/>\par
+              <ColorMapEntry quantity="0.75" label="Geschikt" color="#3e8ec4"/>\par
+              <ColorMapEntry quantity="1.0" label="Zeer geschikt" color="#08306b"/>\par
+            </ColorMap>\par
+          </RasterSymbolizer>\par
+        </Rule>\par
+      </FeatureTypeStyle>\par
+    </UserStyle>\par
+  </NamedLayer>\par
+</StyledLayerDescriptor>\par
+\f0\fs20\par
+Validate\par
+\par
+\b\fs26 Toevoegen in GeoServer van de extra laag "suit_extraction"\b0\fs20\par
+De geotifs worden als ImageMosaic geserveerd vanuit GeoServer.\par
+Voor de ImageMosaic moet eerst in PostGIS een index tabel gemaakt worden.\par
+\par
+\b Maak in PostGIS een nieuw schema suit_extraction_index\par
+\b0\par
+Start psql en voer het volgende commando uit:\par
+\par
+\f2 CREATE SCHEMA suit_extraction_index;\par
+\f0\par
+\b Kopieer de configuratie bestanden\par
+\b0 Voor het maken van de ImageMosaic moeten een aantal bestanden naar de directory met de tifs gekopi\'eberd worden.\par
+\par
+\i datastore.properties\b\i0\par
+\b0\par
+LET OP: Pas het passwd aan.\par
+\par
+Met:\par
+\f2 SPI=org.geotools.data.postgis.PostgisNGDataStoreFactory\par
+host=geopg-ext.zeeland.nl\par
+port=5432\par
+database=freshem\par
+schema=suit_extraction_index\par
+user=freshem\par
+passwd=***\par
+Loose\\ bbox=true\par
+Estimated\\ extends=false\par
+validate\\ connections=true\par
+Connection\\ timeout=10\par
+preparedStatements=true\par
+\f0\par
+\i elevationregex.properties\par
+\b\i0\par
+\b0 LET OP: Dit is anders dan bij de andere geotifs.\par
+\b\par
+\b0 Met:\par
+\f2 regex=-?[0-9]+\par
+\f0\par
+\i indexer.properties\par
+\i0\par
+Met:\par
+\f2 ElevationAttribute=elevation\par
+Schema=*the_geom:Polygon,location:String,elevation:Integer\par
+PropertyCollectors=IntegerFileNameExtractorSPI[elevationregex](elevation)\par
+Caching=false\par
+AbsolutePath=false\par
+\par
+\b\f0 Maken van een ImageMosaic laag in GeoServer\par
+\b0 Nu kan een ImageMosaic Store gemaakt worden.\par
+\par
+Login in GeoServer en doe.\par
+\par
+Stores\par
+\tab Add new Store\par
+\tab\tab ImageMosaic\par
+\tab\tab suit_extraction\par
+\tab\tab suit_extraction\par
+\tab\tab {\cf0{\field{\*\fldinst{HYPERLINK file:geoserver_data/freshem/raster_suit_extraction100m }}{\fldrslt{file:geoserver_data/freshem/raster_suit_extraction100m\ul0\cf0}}}}\cf0\f0\fs20\par
+\cf1\tab Save\par
+\tab Publish\par
+\tab\tab suit_extraction\par
+\tab\tab suit_extraction\par
+\tab\tab Tab: Publishing\par
+\tab\tab\tab Style\par
+\tab\tab\tab\tab suit_extraction\par
+\tab\tab Tab: Dimension\par
+\tab\tab\tab Elevation\tab\tab\tab AAN\par
+\tab\tab\tab Units\tab\tab\tab\tab EPSG:28992\par
+\tab\tab\tab Unit Symbol\tab\tab\tab m\par
+\tab\tab\tab Presentation\tab\tab\tab List\par
+\tab\tab\tab Default value\tab\tab\tab Use the biggest domain value\par
+\par
+Opmerking: De optie "Use the domain value nearest to the reference value" geeft in de gebruikte GeoServer versie een foutmelding. Waarschijnlijk een bug in deze versie.\par
+\par
+\b Check via de Layer Preview\par
+\b0\par
+\b\fs26 Eventueel instellen van GeoWebCache\b0\fs20\par
+\par
+\b Eventueel een nieuwe BlobStore maken\par
+\b0\par
+\b Instellen\b0\par
+Tile Caching\par
+\tab Tile Layers\par
+\tab\tab Add a new cached layer\par
+\tab\tab suit_extraction\par
+\tab\tab etc.\par
+\par
+\b Pre-seeden\b0\par
+Tile Caching\par
+\tab Tile Layers\par
+\tab\tab suit_extraction\par
+\tab\tab Seed/Truncate\par
+\par
+\b\fs26 Installatie van de nieuwe code op de applicatieserver\b0\fs20\par
+Er zijn drie distribution sets:\par
+\tab dist\tab\tab\tab geminimaliseerd.\par
+\tab dist_nomap\tab\tab geminimaliseerd, zonder de map files.\par
+\tab dist_nomin\tab\tab niet geminimaliseerd\par
+\par
+\b Kopieren de gewenste distribution set naar <src>.\par
+\b0\par
+\b\fs26 Configureren van de nieuwe viewer\b0\fs20\par
+Instellen van config.js.\par
+\par
+\b\fs26 Testen van de nieuwe viewer\b0\fs20\par
+Opstarten\par
+\par
+Algemene info\par
+\par
+Kaartlagen aan/uit\par
+Kaartlagen transparantie\par
+Kaartlagen ticks\par
+Kaartlagen info\par
+\par
+Indentify\par
+Indentify met AHN, Grondwaterstanden\par
+Indentify met vlieglijnen\par
+Open vlieglijnen\par
+\par
+Puntprofiel\par
+Lijnprofiel\par
+Inzoomen\par
+Download als PNG\par
+Download als PDF\par
+\par
+Adreszoeken\par
+\par
+\b\fs26 Toetsen en verrijken beheerdocumentatie\b0\fs20\par
+De eerste versie van README_zeeland is door Marco Duiker gemaakt. Deze versie is verder aangevuld met extra informatie vanwege de nieuwe viewer (zie README_zeeland_v2.md).\par
+\par
+\b\fs30 BIJLAGEN\b0\fs20\par
+\par
+\b\fs26 Ontwikkelomgeving\b0\fs20\par
+\b\par
+VMware 16.2\par
+\par
+Ubuntu 22.4 (24 GB memory)\par
+\b0 Java\tab\tab 11\par
+Tomcat\tab\tab 9.0.58\par
+GeoServer\tab 2.25.1\par
+PostgreSQL\tab 14\par
+GDAL\tab\tab 3.4.1\par
+\f1\par
+\b\f0 Windows 10 (24 GB memory)\par
+\b0 IntelliJ 2024.1.1\par
+NodeJS\par
+DBeaver\par
+\f1\par
+\b\f0\fs26 Runnen en builden van de code met Parcel\b0\fs20\par
+Onder Windows 10.\par
+\par
+\b Installeer NodeJS.\par
+\b0\par
+\b Installeer benodigde NodeJS modules\par
+\b0 Gebruikt de package.json om alle benodigde modules te installeren.\par
+\b\par
+\cf2\b0\f2 cd <src>\par
+npm install\par
+\cf1\f0\par
+\b Start de ontwikkelserver\par
+\cf2\b0\f2 cd <src>\par
+npm run dev\par
+\cf1\f0\par
+\b Build de code voor productie\par
+\cf2\b0\f2\par
+\cf1\f0 Minimized\par
+\cf2\f2 cd <src>\par
+npm run build\par
+\cf1\f0\par
+Minimized, geen map files\par
+\cf2\f2 cd <src>\par
+npm run build_nomap\par
+\cf1\f0\par
+Not minimized\par
+\cf2\f2 cd <src>\par
+npm run build_nomin\par
+\cf1\f0\par
+\b\fs26 Data verwerking - Scripts\b0\fs20\par
+\par
+\b conv_suit_extaction.py\par
+\b0\par
+\f2 # Converts the 100m .asc files with suitable for extraction to 100m and 50m tifs.\par
+#\par
+# 50m tifs are needed for combining with the chloride data.\par
+#\par
+# Run unther Ubuntu because of compression.\par
+\par
+...\par
+    fromDir = r"/Data/freshem/suitextraction"\par
+    toDir100m = r"/Data/freshem/suitextraction100m"\par
+    toDir50m = r"/Data/freshem/suitextraction50m"\par
+...\par
+\f0\par
+\b data_to_csv.py\par
+\b0\par
+\f2 # Converts chloride and suit_extraction points to a csv file.\par
+#\par
+# Needs 24-28 GB memory!\par
+\f0\par
+\f2 ...\par
+    fromChlorideDir = r"C:\\Freshem\\3D\\asc"\par
+    fromSuitDir = r"C:\\Freshem\\SuitExtraction50m"\par
+    toDir = r"C:\\Freshem\\PointData_CSV"\par
+...\par
+\par
+}
+ 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <title>FRESHEM App</title>
+
+  <!-- Prevent loading css files multiple times. -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <meta name='title' content='FRESHEM Zeeland - Zoet-zoutverdeling Zeeuwse ondergrond'>
+  <meta name='subtitle' content=''>
+  <meta name='keywords' content=''>
+  <meta name='description' content=''>
+  <meta name='robots' content='index, follow'>
+  <meta name='generator' content='Wombat framework v1.25'>
+  <meta name='author' content='Wim Kosten / Provincie Zeeland; Marco Duiker / OpenGeoGroep'>
+  <meta name='twitter:card' content='summary'>
+  <meta name='twitter:site' content='@provinciezeeland'>
+  <meta name='twitter:creator' content='@provinciezeeland'>
+  <meta name='profiler_memory_usage' content='3.43MB'>
+  <meta name='profiler_total_time' content='0.7389s'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='msapplication-TileColor' content='#ffffff'>
+  <meta name='theme-color' content='#ffffff'>
+  <meta property='og:locale' content='en_US'>
+  <meta property='og:type' content='website'>
+  <meta property='og:url' content=''>
+  <meta property='og:site_name' content=''>
+  <meta property='og:description' content=''>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Prevent favicon.ico error. -->
+  <link rel="shortcut icon" href="#">
+
+  <link rel="stylesheet" href="/static_sites/freshem_v2/index.css">
+  <link rel="stylesheet" href="/static_sites/freshem_v2/provzld.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+<body>
+<header>
+  <div class="layout-container__item layout-header">
+    <div class="layout-header__inner center-div">
+      <div class="col-md-6 col-xs-6">
+        <div class="map-title">FRESHEM<div class="map-version"></div></div>
+        <div class="map-subtitle">Zoet-zoutverdeling Zeeuwse ondergrond</div>
+      </div>
+      <div class="col-md-6 col-xs-6">
+        <form class="ol3_search_form" role="search">
+          <div class="input-group" style="max-width:500px;">
+            <label for="ol3_search_form_lookup"></label>
+            <input type="text" id="ol3_search_form_lookup" autocomplete="off"
+                   class="form-control ui-autocomplete-input" placeholder="Zoek op adres ...">
+          </div>
+          <span id="map_search_simple_result"></span>
+        </form>
+      </div>
+      <div class="layout-header-logo">
+        <img class="logo" src="/static_sites/freshem_v2/images/logo-zeeland-kleur.svg" alt="Provincie Zeeland logo"/>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="progress"></div>
+<div id="map" class="map"></div>
+<div class="layerSwitcher"></div>
+<div id="gp_container"></div>
+<div id="fl_container"></div>
+<div id="popup" class="ol-popup">
+  <a href="#" id="popup-closer" class="ol-popup-closer">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </a>
+  <div id="popup-content"></div>
+</div>
+<div id="chartpopup"></div>
+
+<!--Config file.-->
+<script src="/static_sites/freshem_v2/config.js"></script>
+
+<!--Main js file.-->
+<script type="module" src="/static_sites/freshem_v2/index.js"></script>
+
+<!--<script type="text/javascript">-->
+<!--  /*<![CDATA[*/-->
+<!--  (function()-->
+<!--  {-->
+<!--    let sz = document.createElement('script'); sz.type = 'text/javascript';-->
+<!--    sz.async = true;-->
+<!--    //sz.src = '//siteimproveanalytics.com/js/siteanalyze_6011276.js';-->
+<!--    sz.src = 'https://siteimproveanalytics.com/js/siteanalyze_6011276.js';-->
+<!--    let s = document.getElementsByTagName('script')[0];-->
+<!--    s.parentNode.insertBefore(sz, s);-->
+<!--  })();-->
+<!--  /*]]>*/-->
+<!--</script>-->
+<div class="magnify-mobile">
+  <div class="lens-mobile"></div>
+</div>
+</body>
+</html>
