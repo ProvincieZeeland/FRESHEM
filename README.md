@@ -248,7 +248,7 @@ met [Geoserver](https://geoserver.org/) zoals hieronder beschreven. Naar verwach
 ook met andere producten goed zoals bijvoorbeeld [Mapserver](https://mapserver.org/). 
 
 Uit performance overwegingen kan ook gebruik gemaakt worden van een tile
-service, in dit geval ingericht met [GeoebCache](https://docs.geoserver.org/stable/en/user/geowebcache/index.html) zoals hieronder
+service, in dit geval ingericht met [GeowebCache](https://docs.geoserver.org/stable/en/user/geowebcache/index.html) zoals hieronder
 beschreven. Naar verwachting kan dit ook met andere producten goed zoals
 bijvoorbeeld [Mapproxy](https://www.mapproxy.org/). 
 
